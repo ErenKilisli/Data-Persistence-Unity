@@ -1,9 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Unity.UI;
 using UnityEngine.UI;
-
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -21,23 +18,16 @@ public class UIManager : MonoBehaviour
 
     public void SetPlayerName()
     {
-        if (PlayerDataHandle.Instance != null)
-        {
-            PlayerDataHandle.Instance.PlayerName = PlayerNameInput.text;
-        }
-        else
-        {
-            Debug.LogWarning("PlayerDataHandle.Instance is null. Make sure it is initialized in the scene.");
-        }
+        PlayerDataHandle.Instance.PlayerName = PlayerNameInput.text;
     }
 
 
     public void ExitGame()
     {
-    #if UNITY_EDITOR
-        EditorApplication.ExitPlaymode();
-    #else
-        Application.Quit();
-    #endif
+        #if UNITY_EDITOR
+            EditorApplication.ExitPlaymode();
+        #else
+            Application.Quit();
+        #endif
     }
 }
